@@ -39,25 +39,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [
-    Transaction(id: 't1', title: 'Curso Dart', amount: 199.90, date: DateTime.now(), category: 'Trabajo'),
-    Transaction(id: 't2', title: 'Cine', amount: 200.00, date: DateTime.now(), category: 'Cine'),
+  final List<Transaccion> _userTransactions = [
+    Transaccion(id: 't1', titulo: 'Curso Dart', cantidad: 199.90, fecha: DateTime.now(), categoria: 'Trabajo'),
+    Transaccion(id: 't2', titulo: 'Cine', cantidad: 200.00, fecha: DateTime.now(), categoria: 'Cine'),
   ];
 
   bool _showChart = false;
 
-  List<Transaction> get _recentTransactions {
+  List<Transaccion> get _recentTransactions {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
 
   void _addNewTransaction(String txTitle, double txAmount, DateTime chosenDate, String chosenCategory) {
-    final newTx = Transaction(
-      title: txTitle,
-      amount: txAmount,
-      date: chosenDate,
-      category: chosenCategory,
+    final newTx = Transaccion(
+      titulo: txTitle,
+      cantidad: txAmount,
+      fecha: chosenDate,
+      categoria: chosenCategory,
       id: DateTime.now().toString(),
     );
 

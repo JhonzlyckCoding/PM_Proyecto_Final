@@ -34,12 +34,22 @@ class TransactionList extends StatelessWidget {
                 ),
             ),
             title: Text(
-              transactions
+              transactions[index].title,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            subtitle: Text(
+              DateFormat.yMMMd().format(transactions[index].date),
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              color: Theme.of(context).colorScheme.error,
+              onPressed: () => deleteTx(transactions[index].id),
             ),
           ),
 
-        )
+        );
        },
-   )
+       itemCount: transactions.length,
+   );
   }
 }

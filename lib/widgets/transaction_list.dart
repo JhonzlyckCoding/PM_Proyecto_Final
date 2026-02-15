@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  final List<Transaction> transactions;
+  final List<Transaccion> transactions;
   final Function deleteTx;
 
   TransactionList(this.transactions, this.deleteTx);
@@ -30,15 +30,15 @@ class TransactionList extends StatelessWidget {
               radius: 30,
               child: Padding(
                 padding: EdgeInsets.all(6),
-                child: FittedBox(child: Text('\$${transactions[index].amount}'),),
+                child: FittedBox(child: Text('\$${transactions[index].cantidad}'),),
                 ),
             ),
             title: Text(
-              transactions[index].title,
+              transactions[index].titulo,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             subtitle: Text(
-              DateFormat.yMMMd().format(transactions[index].date),
+              DateFormat.yMMMd().format(transactions[index].fecha),
             ),
             trailing: IconButton(
               icon: Icon(Icons.delete),

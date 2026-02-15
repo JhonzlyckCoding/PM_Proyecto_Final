@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaccion> get _recentTransactions {
     return _userTransactions.where((tx) {
-      return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+      return tx.fecha.isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
 
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (_) {
         return GestureDetector(
           onTap: () {},
-          child: NewTransaction(_addNewTransaction),
+          child: nuevaTransaccion(_addNewTransaction),
           behavior: HitTestBehavior.opaque,
         );
       },

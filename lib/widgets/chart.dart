@@ -54,22 +54,18 @@ class Chart extends StatelessWidget{
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Container(
+      color: Colors.deepPurple[50],
+      child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: valorTransaccionesAgrupadas.map((data){
             return Flexible(
               fit: FlexFit.tight,
-              child: Column(
-                children: <Widget>[
-                  ChartBar(
-                    data['Categoria'] as String,
-                    data['Cantidad'] as double,
-                    gastoTotal == 0.0 ? 0.0 : (data['Cantidad'] as double) / gastoTotal,
-                  ),  
-            
-                ],
+              child: ChartBar(
+                data['Categoria'] as String,
+                data['Cantidad'] as double,
+                gastoTotal == 0.0 ? 0.0 : (data['Cantidad'] as double) / gastoTotal,
               ),
             );
           }).toList(),
@@ -90,12 +86,12 @@ class ChartBar extends StatelessWidget{
   
   IconData obtenerIcon(String etiqueta){
 
-    switch(etiqueta.toLowerCase()){
+    switch(etiqueta){
 
-      case 'comida': return Icons.restaurant;
-      case 'cine': return Icons.movie;
-      case 'viaje': return Icons.flight;
-      case 'trabajo': return Icons.work;
+      case 'Comida': return Icons.fastfood;
+      case 'Cine': return Icons.movie;
+      case 'Viaje': return Icons.flight;
+      case 'Trabajo': return Icons.work;
       default: return Icons.category;
 
     }
@@ -117,13 +113,15 @@ class ChartBar extends StatelessWidget{
             height: restriccion.maxHeight * 0.15,
             child: FittedBox(
 
-              child: Text('\$${cantidadGasto.toStringAsFixed(0)}'),
+              child: Text('\$${cantidadGasto.toStringAsFixed(0)}')),
 
-            ),
+          
 
           ),
 
-          SizedBox(height: restriccion.maxHeight * 0.6,
+          SizedBox(height: restriccion.maxHeight * 0.05),
+          Container(
+          height: restriccion.maxHeight*0.6,
           width: 10,
           child: Stack(
             alignment: Alignment.bottomCenter,

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import '../models/transaction.dart';
 
 class Chart extends StatelessWidget{
 
-  final List<Transaction> transaccionesRecientes;
+  final List<Transaccion> transaccionesRecientes;
 
   Chart(this.transaccionesRecientes);
 
@@ -120,16 +121,35 @@ class ChartBar extends StatelessWidget{
           ),
 
           SizedBox(height: restriccion.maxHeight * 0.6,
-          widht: 10,
+          width: 10,
           child: Stack(
-
-
-
-
-          ),)
-
-        ]
-
+            alignment: Alignment.bottomCenter,
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color:Colors.grey,width:1.0),
+                  color: Color.fromRGBO(220,220,220,1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              FractionallySizedBox(
+                heightFactor: porcentajeGastoTotal,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+        SizedBox(height: restriccion.maxHeight*0.05,),
+        Container(
+          height: restriccion.maxHeight*0.15,
+          child: FittedBox(child: Icon(obtenerIcon(etiqueta), color:Colors.grey)),
+        ),
+      ],
       );
 
     });

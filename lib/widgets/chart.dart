@@ -5,14 +5,14 @@ class Chart extends StatelessWidget{
 
   final List<Transaction> transaccionesRecientes;
 
-  Chart(this.transaccionesRecientes)
+  Chart(this.transaccionesRecientes);
 
   List<Map<String, Object>> get valorTransaccionesAgrupadas{
 
     return List.generate(4, (index){
 
 
-      final categorias = ['Comida', 'Cine', 'Viaje', 'Trabajo']
+      final categorias = ['Comida', 'Cine', 'Viaje', 'Trabajo'];
       final nombreCategorias = categorias[index];
 
       var totalSum = 0.0;
@@ -124,15 +124,15 @@ class ChartBar extends StatelessWidget{
           child: Stack(
 
 
-            
 
-          ),))
+
+          ),)
 
         ]
 
-      )
+      );
 
-    })
+    });
 
   }
 

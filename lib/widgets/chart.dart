@@ -63,9 +63,12 @@ class Chart extends StatelessWidget{
               fit: FlexFit.tight,
               child: Column(
                 children: <Widget>[
-                  Text(data['Categoria'] as String),
-                  SizedBox(height: 4),
-                  Text('\$${(data['Cantidad'] as double).toStringAsFixed(2)}'),
+                  ChartBar(
+                    data['Categoria'] as String,
+                    data['Cantidad'] as double,
+                    gastoTotal == 0.0 ? 0.0 : (data['Cantidad'] as double) / gastoTotal,
+                  ),  
+            
                 ],
               ),
             );
@@ -87,7 +90,7 @@ class ChartBar extends StatelessWidget{
   
   IconData obtenerIcon(String etiqueta){
 
-    switch(etiqueta){
+    switch(etiqueta.toLowerCase()){
 
       case 'comida': return Icons.restaurant;
       case 'cine': return Icons.movie;

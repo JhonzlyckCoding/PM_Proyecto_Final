@@ -127,17 +127,17 @@ class ChartBar extends StatelessWidget{
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color:Colors.grey,width:1.0),
+                  border: Border.all(color:Color.fromARGB(220, 220, 220, 255),width:1.0),
                   color: Color.fromRGBO(220,220,220,1),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
               FractionallySizedBox(
                 heightFactor: porcentajeGastoTotal,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.deepPurple,
-                    borderRadius: BorderRadius.circular(10),
+                    color: const Color.fromARGB(255, 91, 98, 175),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               )
@@ -147,7 +147,7 @@ class ChartBar extends StatelessWidget{
         SizedBox(height: restriccion.maxHeight*0.05,),
         Container(
           height: restriccion.maxHeight*0.15,
-          child: FittedBox(child: Icon(obtenerIcon(etiqueta), color:Colors.grey)),
+          child: FittedBox(child: Icon(obtenerIcon(etiqueta), color:Color.fromARGB(255, 91, 98, 175))),
         ),
       ],
       );

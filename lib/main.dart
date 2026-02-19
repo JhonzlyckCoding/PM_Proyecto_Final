@@ -100,12 +100,13 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Row(
             children: [
-              Icon(Icons.bar_chart, color: Theme.of(context).primaryColor),
+              Icon(Icons.bar_chart, color: Colors.white),
               const SizedBox(width: 10),
               Text(
                 'Mostrar Grafica de Gastos',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
               ),
             ],

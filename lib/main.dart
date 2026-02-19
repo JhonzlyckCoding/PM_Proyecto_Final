@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './widgets/chart.dart';
@@ -31,6 +30,8 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
     );
   }
+
+
 }
 
 class MyHomePage extends StatefulWidget {
@@ -85,6 +86,44 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Widget _buildLandscapeSwitch(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      decoration:  BoxDecoration(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.bar_chart, color: Theme.of(context).primaryColor),
+              const SizedBox(width: 10),
+              Text(
+                'Mostrar Grafica de Gastos',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
+          ),
+          Switch.adaptive(
+            activeTrackColor: Theme.of(context).colorScheme.secondary,
+            value: _showChart,
+            onChanged: (val) {
+              setState(() {
+                _showChart = val;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -111,35 +150,35 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Mostrar Gráfica', style: Theme.of(context).textTheme.titleMedium),
-                  Switch.adaptive(
-                    activeColor: Theme.of(context).colorScheme.secondary,
-                    value: _showChart,
-                    onChanged: (val) {
-                      setState(() {
-                        _showChart = val;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            if (!isLandscape)
+            
+            if(isLandscape) ...[
+
+              _buildLandscapeSwitch(context),
+              _showChart
+              ? Container(
+
+                height: (mediaQuery.size.height - appBar.preferredSize.height - mediaQuery.padding.top) * 0.6,
+                child: Chart(_recentTransactions),
+
+              )
+
+            : txListWidget
+
+            ],
+
+            if (!isLandscape) ...[
+
               Container(
+
                 height: (mediaQuery.size.height - appBar.preferredSize.height - mediaQuery.padding.top) * 0.3,
                 child: Chart(_recentTransactions),
+
               ),
-            if (!isLandscape) txListWidget,
-            if (isLandscape)
-              _showChart
-                  ? Container(
-                      height: (mediaQuery.size.height - appBar.preferredSize.height - mediaQuery.padding.top) * 0.7,
-                      child: Chart(_recentTransactions),
-                    )
-                  : txListWidget
+
+              txListWidget,
+
+            ],
+              
           ],
         ),
       ),
@@ -151,3 +190,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+

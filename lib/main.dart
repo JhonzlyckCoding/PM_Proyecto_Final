@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Control Gastos Flutter',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple).copyWith(
-          secondary: Colors.amber,
+        primarySwatch: Colors.indigo,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.indigo).copyWith(
+          secondary: Colors.green,
         ),
         fontFamily: 'Quicksand',
         appBarTheme: AppBarTheme(
